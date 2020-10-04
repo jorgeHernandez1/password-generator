@@ -27,9 +27,9 @@ function writePassword(event) {
   );
   //validate user has selected at least one option
   if (
-    !userIncludeSpecialChars ||
-    !userIncludeNums ||
-    !userIncludeLCase ||
+    !userIncludeSpecialChars &&
+    !userIncludeNums &&
+    !userIncludeLCase &&
     !userIncludeLCase
   ) {
     alert("You must select at least one option to include. Please try again.");
