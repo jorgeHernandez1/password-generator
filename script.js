@@ -9,28 +9,42 @@ function writePassword(event) {
   //prompt user for password options
   var userLength = prompt("How many characters should the password be?");
 
+  //validate length requirements
+  if (userLength < 7 || userLength > 129) {
+    alert("Password must be between 8 and 128 characters. Please try again.");
+    return;
+  }
+
   var userIncludeSpecialChars = confirm(
     "Would you like to include special characters?"
   );
-  var userIncludeSpecialNums = confirm(
-    "Would you like to include numbers?"
-  );
-  var userIncludeSpecialUCase = confirm(
+  var userIncludeNums = confirm("Would you like to include numbers?");
+  var userIncludeUCase = confirm(
     "Would you like to include upper case characters?"
   );
-  var userIncludeSpecialLCase = confirm(
+  var userIncludeLCase = confirm(
     "Would you like to include lower case characters?"
   );
+  //validate user has selected at least one option
+  if (
+    !userIncludeSpecialChars ||
+    !userIncludeNums ||
+    !userIncludeLCase ||
+    !userIncludeLCase
+  ) {
+    alert("You must select at least one option to include. Please try again.");
+    return;
+  }
 
   //gernerate password with user selections
   var password = generatePassword(
     (pwLength = userLength),
     (pwIncludeSpecialChars = userIncludeSpecialChars),
-    (pwIncludeNumbers = userIncludeSpecialNums),
-    (pwIncludeUpperCase = userIncludeSpecialUCase),
-    (pwIncludeLowerCase = userIncludeSpecialLCase)
+    (pwIncludeNumbers = userIncludeNums),
+    (pwIncludeUpperCase = userIncludeUCase),
+    (pwIncludeLowerCase = userIncludeLCase)
   );
-  
+
   //set password element and its value
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
